@@ -1,0 +1,3007 @@
+[
+    {
+        "id": "33ad57034ed91e37",
+        "type": "tab",
+        "label": "Flow-Validaciondatos-parte1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "6b78e227346982e6",
+        "type": "ui_text_input",
+        "z": "33ad57034ed91e37",
+        "name": "",
+        "label": "Nombre",
+        "tooltip": "Nombre de la persona",
+        "group": "278de71dd7cd642d",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "textinputName",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
+        "x": 120,
+        "y": 820,
+        "wires": [
+            [
+                "c490462da51b1ece"
+            ]
+        ]
+    },
+    {
+        "id": "f18aa88b2dfbf389",
+        "type": "ui_slider",
+        "z": "33ad57034ed91e37",
+        "name": "",
+        "label": "Intervalo",
+        "tooltip": "Intervalo de transmision en segundos",
+        "group": "278de71dd7cd642d",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "end",
+        "topic": "textinputInterval",
+        "topicType": "str",
+        "min": "1",
+        "max": "123",
+        "step": 1,
+        "className": "",
+        "x": 120,
+        "y": 1080,
+        "wires": [
+            [
+                "cc5be65fc2bdc1d6"
+            ]
+        ]
+    },
+    {
+        "id": "8840e4f01cab2e79",
+        "type": "ui_button",
+        "z": "33ad57034ed91e37",
+        "name": "",
+        "group": "278de71dd7cd642d",
+        "order": 8,
+        "width": "0",
+        "height": "0",
+        "passthru": false,
+        "label": "INICIAR",
+        "tooltip": "Iniciar la solicitud de datos del sensor",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "mi-login",
+        "payload": "start",
+        "payloadType": "str",
+        "topic": "start",
+        "topicType": "str",
+        "x": 120,
+        "y": 1180,
+        "wires": [
+            [
+                "ed8d6711db45c536",
+                "c490462da51b1ece",
+                "cc5be65fc2bdc1d6",
+                "2b909d219b45ef90"
+            ]
+        ]
+    },
+    {
+        "id": "73b597971ba5feed",
+        "type": "ui_button",
+        "z": "33ad57034ed91e37",
+        "name": "",
+        "group": "278de71dd7cd642d",
+        "order": 1,
+        "width": "6",
+        "height": "1",
+        "passthru": false,
+        "label": "PARAR",
+        "tooltip": "Parar envio de datos del sensor",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "mi-logout",
+        "payload": "stop",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 120,
+        "y": 1260,
+        "wires": [
+            [
+                "ad76c285f884452a",
+                "2b909d219b45ef90"
+            ]
+        ]
+    },
+    {
+        "id": "132ac8aac4717837",
+        "type": "ui_template",
+        "z": "33ad57034ed91e37",
+        "group": "278de71dd7cd642d",
+        "name": "Dashboard stylesheet",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<style>\n/*\nIt is reasnoble to declare the colors as CSS variables\nso they can be easily called by name where needed.\n\nYou can see that in many places the variables are not used. Change it!\ncolor-gray-primary:rgba(40,40,40,1)\n*/\n\n:root {\n  --color-green-primary: rgb(51, 204, 51);\n  --color-green-secondary: rgb(26, 101, 26);\n  --color-red-primary: rgb(255, 0, 0);\n  --color-red-secondary: rgba(153,0,0,1);\n  --color-gray-primary:rgba(40,40,40,1);\n  --color-gray-secondary:rgba(211,211,211,1);\n  --color-text-primary: rgb(230, 226, 209);\n  --color-widget-border: rgb(84, 78, 78);\n}\n\n/*\nAll CSS adjustments are commented out.\nTurn rules on one by one and see the changes.\nDon't use too many elements cos it wil be confusing\nStart with simple elements like text, slider or button\n\nMany of elements like buttons have states, \nthose rules must be found and adjusted also.\n*/\n\n/*\n.masonry-container {\n    position: relative;\n    width: 100%;\n    height:100%;\n    margin: 0 auto;\n    background: rgb(255,0,0);\n    background: linear-gradient(180deg,  var(--color-gray-primary) 0%, var(--color-gray-secondary) 100%);\n}\n*/\n\n\n\n.nr-dashboard-cardcontainer {\n    position: relative;\n    box-shadow: inset 0px 1px 4px 0px #000000bb;\n    border-radius: 15px;\n   \n}\n\n\n \n.nr-dashboard-theme ui-card-panel {\n    background-color: #59595900;\n    color:var(--color-text-primary);\n    border-radius: 15px;\n    box-shadow: 0 0 8px 0px #00000080;\n}\n\nbody.nr-dashboard-theme md-content md-card {\n    background-color: #A5A5A5;\n    color: var(--color-text-primary);\n    text-shadow: 4px 2px 4px #00000045;\n    box-shadow: 0 -1px 5px 1px #00000045;\n    border-radius: 12px;\n    border: 1px solid var(--color-widget-border);\n}\n\n .nr-dashboard-widget-Uptime {\n    background-color: red !important;\n    color: var(--color-text-primary);\n    text-shadow: 4px 2px 4px #00000045;\n    box-shadow: 0 -1px 5px 1px #00000045;\n    border-radius: 12px;\n    border: 1px solid var(--color-widget-border);\n}\n\n\n.nr-dashboard-theme ui-card-panel p.nr-dashboard-cardtitle {\n    color: var(--color-text-primary);\n}\n\n\n\n/*\n.md-button {\n    display: inline-block;\n    position: relative;\n    cursor: pointer;\n    min-height: 36px;\n    min-width: 88px;\n    line-height: 36px;\n    vertical-align: middle;\n    align-items: center;\n    text-align: center;\n    border-radius: 12px;\n    box-sizing: border-box;\n    -webkit-user-select: none;\n    -moz-user-select: none;\n    -ms-user-select: none;\n    user-select: none;\n    outline: none;\n    border: 0;\n    padding: 0 6px;\n    margin: 6px 8px;\n    background: transparent;\n    color:var(--color-text-primary);\n    white-space: nowrap;\n    text-transform: uppercase;\n    font-weight: 500;\n    font-size: 14px;\n    font-style: inherit;\n    font-variant: inherit;\n    font-family: inherit;\n    text-decoration: none;\n    overflow: hidden;\n    transition: box-shadow .4s cubic-bezier(.25,.8,.25,1),background-color .4s cubic-bezier(.25,.8,.25,1);\n}\n\n*/\n\n/*\n.nr-dashboard-theme .nr-dashboard-button .md-button {\n    background-color: #88888800;\n    color:var(--color-text-primary);\n}\n*/\n\n/*\n.nr-dashboard-theme .nr-dashboard-button .md-button:hover {\n    background-color: #88888855;\n}\n*/\n\n\n/*\nmd-slider .md-thumb {\n    z-index: 1;\n    position: absolute;\n    left: -10px;\n    top: 14px;\n    width: 20px;\n    height: 20px;\n    border-radius: 20px;\n    -webkit-transform: scale(.7);\n    transform: scale(.7);\n    transition: all .4s cubic-bezier(.25,.8,.25,1);\n    box-shadow: 0 0 6px #00000070;\n}\n\n*/\n\n/*\nAdvanced stuff - dynamic change of card CSS\n\nClasses here can be used to make colored stripe at the top of card\nUsage is not in here, but they are added to md-card when needed within another template\n\n.carderr {\n    background: rgb(255,0,0);\n    background: linear-gradient(180deg, var(--color-red-primary) 0px, var(--color-red-secondary) 3px, rgba(80,80,80,1) 4px, rgba(45,45,45,1) 100%);\n}\n.cardok {\n    background: rgb(39,255,0);\n    background: linear-gradient(180deg, var(--color-green-primary) 0px, var(--color-green-secondary) 3px, rgba(70,70,70,1) 4px, rgba(40,40,40,1) 100%);\n}\n*/\n.text-background\n{\nbackground-color:red !important;\n\n}\n</style>\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "global",
+        "className": "",
+        "x": 140,
+        "y": 720,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c490462da51b1ece",
+        "type": "function",
+        "z": "33ad57034ed91e37",
+        "name": "enviar nombre con evento iniciar",
+        "func": "var namereg = \"^[a-zA-Z]+(?:\\s[a-zA-Z]+)?(?:[ ,.'-][a-zA-Z]+)*$\"\nvar namelength = 50\n\nvar name = flow.get(\"name\") || \"\";\n\nif (msg.topic === \"textinputName\") {\n  name = msg.payload;\n  if (!(name).match(namereg)) {\n    msg.errormessage = \"Enter a valid name\"\n    name = \"\";\n  }\n  else {\n    if ((name.length <= 0) || (name.length >= 50)) {\n      msg.errormessage = \"Check name length\"\n      name = \"\";\n    }\n    //else {\n      //msg.errormessage = \"\"\n    //}\n\n  }\n  flow.set(\"name\", name)\n  msg.name = name\n}\n\nif (msg.topic === \"start\") {\n  msg.payload = name;\n  if (name.length <= 0){\n    msg.errormessage = \"Invalid name,cannot start\"\n  }\n  else{\n    msg.errormessage = \"\";\n  }\n} else {\n  context.set(\"name\", \"\");\n}\nreturn msg;\n\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\nvar name = \"asdasd\"",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 820,
+        "wires": [
+            [
+                "88c7b04f5130b35c",
+                "5f13a273f5760a88"
+            ]
+        ]
+    },
+    {
+        "id": "6d524f0eac4cee7d",
+        "type": "debug",
+        "z": "33ad57034ed91e37",
+        "name": "debug 8",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 980,
+        "y": 1140,
+        "wires": []
+    },
+    {
+        "id": "ad76c285f884452a",
+        "type": "debug",
+        "z": "33ad57034ed91e37",
+        "name": "debug 10",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 980,
+        "y": 1260,
+        "wires": []
+    },
+    {
+        "id": "88c7b04f5130b35c",
+        "type": "switch",
+        "z": "33ad57034ed91e37",
+        "name": "param_name_check",
+        "property": "errormessage",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Enter a valid name",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Check name length",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Invalid name,cannot start",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 4,
+        "x": 780,
+        "y": 820,
+        "wires": [
+            [
+                "195fecf7a3ab3bd5"
+            ],
+            [
+                "c3be589404672b4b"
+            ],
+            [
+                "c3be589404672b4b"
+            ],
+            [
+                "c3be589404672b4b"
+            ]
+        ]
+    },
+    {
+        "id": "6f7e52441c1938c9",
+        "type": "inject",
+        "z": "33ad57034ed91e37",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 2780,
+        "wires": [
+            [
+                "9899df01bf4fa000"
+            ]
+        ]
+    },
+    {
+        "id": "9899df01bf4fa000",
+        "type": "function",
+        "z": "33ad57034ed91e37",
+        "name": "function 8",
+        "func": "var namereg = \"^[a-zA-Z ,.'-]+$\"\nvar namelength = 50\n\nvar newer = flow.get(\"id\");\nvar newe2r = flow.get(\"idtype\");\n\n\nmsg.payload = newer\nmsg.payload2 = newe2r\n\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 2780,
+        "wires": [
+            [
+                "f46786aa58151e8d"
+            ]
+        ]
+    },
+    {
+        "id": "f46786aa58151e8d",
+        "type": "debug",
+        "z": "33ad57034ed91e37",
+        "name": "debug 14",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 540,
+        "y": 2780,
+        "wires": []
+    },
+    {
+        "id": "5f13a273f5760a88",
+        "type": "debug",
+        "z": "33ad57034ed91e37",
+        "name": "debug 16",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 760,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "195fecf7a3ab3bd5",
+        "type": "debug",
+        "z": "33ad57034ed91e37",
+        "name": "debug 15",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 980,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "c3be589404672b4b",
+        "type": "change",
+        "z": "33ad57034ed91e37",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "errormessage",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 980,
+        "y": 820,
+        "wires": [
+            [
+                "775c38e2795533b8",
+                "2b909d219b45ef90"
+            ]
+        ]
+    },
+    {
+        "id": "775c38e2795533b8",
+        "type": "ui_toast",
+        "z": "33ad57034ed91e37",
+        "position": "top right",
+        "displayTime": "4",
+        "highlight": "red",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "Field Error Message",
+        "name": "Error Message",
+        "x": 1280,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "383546567551e904",
+        "type": "ui_dropdown",
+        "z": "33ad57034ed91e37",
+        "name": "Tipo_docmento",
+        "label": "TipoDoc",
+        "tooltip": "Tipo de documento",
+        "place": "Select option",
+        "group": "278de71dd7cd642d",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "multiple": false,
+        "options": [
+            {
+                "label": "Cedula",
+                "value": "CC",
+                "type": "str"
+            },
+            {
+                "label": "Pasaporte",
+                "value": "PAS",
+                "type": "str"
+            },
+            {
+                "label": "gh",
+                "value": "fghj",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "TipoId",
+        "topicType": "str",
+        "className": "",
+        "x": 140,
+        "y": 1000,
+        "wires": [
+            [
+                "ed8d6711db45c536"
+            ]
+        ]
+    },
+    {
+        "id": "1c9dfc10ba3aa3a6",
+        "type": "ui_text_input",
+        "z": "33ad57034ed91e37",
+        "name": "",
+        "label": "Identificación",
+        "tooltip": "Identificacion de la persona",
+        "group": "278de71dd7cd642d",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "textinputId",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "str",
+        "x": 130,
+        "y": 940,
+        "wires": [
+            [
+                "ed8d6711db45c536"
+            ]
+        ]
+    },
+    {
+        "id": "ed8d6711db45c536",
+        "type": "function",
+        "z": "33ad57034ed91e37",
+        "name": "enviar id con evento iniciar",
+        "func": "var idlength = 20\nvar idtypevalues = [\"CC\",\"PAS\"]\nvar idCCreg = \"^[0-9]{1,20}$\"\nvar idPASreg = \"^[a-zA-Z0-9]{1,20}$\"\n\n\nvar id = flow.get(\"id\") || \"\";\nvar idtype = flow.get(\"idtype\") || \"\";\n\nif (msg.topic === \"TipoId\") {\n    idtype = msg.payload;\n    flow.set(\"idtype\", idtype);\n}\n\nif (msg.topic === \"textinputId\"){\n    id = msg.payload;\n    flow.set(\"id\",id);\n}\n\n\nif (msg.topic === \"start\") {\n    msg.errormessage = \"\"\n    if ((idtype === \"PAS\")) {\n        if (!(id).match(idPASreg)) {\n            msg.errormessage = \"Enter a valid Passport\"\n        }\n    } else if ((idtype === \"CC\")) {\n        if (!(id).match(idCCreg)) {\n            msg.errormessage = \"Enter a valid CC\"\n        }\n\n    }else {\n        msg.errormessage = \"Invalid id type,cannot start\"\n        id = \"\"\n        idtype = \"\"\n    }\n    msg.payload = idtype+\"-\"+id;\n} else {\n    context.set(\"id\", \"\");\n    context.set(\"idtype\", \"\");\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 940,
+        "wires": [
+            [
+                "65c8ad1e771689e2"
+            ]
+        ]
+    },
+    {
+        "id": "65c8ad1e771689e2",
+        "type": "switch",
+        "z": "33ad57034ed91e37",
+        "name": "param_id_check",
+        "property": "errormessage",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Enter a valid Passport",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Enter a valid CC",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Invalid id type,cannot start",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 4,
+        "x": 760,
+        "y": 940,
+        "wires": [
+            [
+                "93f15d95a9ced9a6"
+            ],
+            [
+                "93f15d95a9ced9a6"
+            ],
+            [
+                "93f15d95a9ced9a6"
+            ],
+            [
+                "b638bbce2168efa0"
+            ]
+        ]
+    },
+    {
+        "id": "93f15d95a9ced9a6",
+        "type": "change",
+        "z": "33ad57034ed91e37",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "errormessage",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 980,
+        "y": 940,
+        "wires": [
+            [
+                "775c38e2795533b8",
+                "2b909d219b45ef90"
+            ]
+        ]
+    },
+    {
+        "id": "b638bbce2168efa0",
+        "type": "debug",
+        "z": "33ad57034ed91e37",
+        "name": "debug 19",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 980,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "cc5be65fc2bdc1d6",
+        "type": "function",
+        "z": "33ad57034ed91e37",
+        "name": "enviar intervalo con evento iniciar",
+        "func": "var interval = flow.get(\"interval\") || \"1\";\n\nif (msg.topic === \"textinputInterval\"){\n    interval = msg.payload;\n    flow.set(\"interval\",interval);\n}\n\nif(msg.topic === \"start\"){\n    msg.errormessage = \"\"\n    if ((Number(interval) <= 0) || (Number(interval) >= 120)){\n        msg.errormessage = \"Incorrect interval value\"\n    }\n    msg.payload = interval;\n}else {\n    context.set(\"interval\", \"\");\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 1080,
+        "wires": [
+            [
+                "8eca07cdcfa32ced"
+            ]
+        ]
+    },
+    {
+        "id": "8eca07cdcfa32ced",
+        "type": "switch",
+        "z": "33ad57034ed91e37",
+        "name": "param_interval_check",
+        "property": "errormessage",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Incorrect interval value",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 780,
+        "y": 1080,
+        "wires": [
+            [
+                "3250e4d1e1304cb2"
+            ],
+            [
+                "6d524f0eac4cee7d"
+            ]
+        ]
+    },
+    {
+        "id": "3250e4d1e1304cb2",
+        "type": "change",
+        "z": "33ad57034ed91e37",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "errormessage",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1000,
+        "y": 1080,
+        "wires": [
+            [
+                "775c38e2795533b8",
+                "2b909d219b45ef90"
+            ]
+        ]
+    },
+    {
+        "id": "b7cd2ba41e707ac9",
+        "type": "ui_text",
+        "z": "33ad57034ed91e37",
+        "group": "278de71dd7cd642d",
+        "order": 2,
+        "width": "5",
+        "height": "1",
+        "name": "",
+        "label": "MAC:",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 770,
+        "y": 1640,
+        "wires": []
+    },
+    {
+        "id": "aab182539bf43efc",
+        "type": "mqtt in",
+        "z": "33ad57034ed91e37",
+        "name": "",
+        "topic": "workStation-1/mac",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "3c78f8f90be30302",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 130,
+        "y": 1680,
+        "wires": [
+            [
+                "0bee4448a2802533"
+            ]
+        ]
+    },
+    {
+        "id": "0bee4448a2802533",
+        "type": "function",
+        "z": "33ad57034ed91e37",
+        "name": "data_validation_mac",
+        "func": "var macreg = \"^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$\"\n\nvar mac = flow.get(\"mac\") || \"\";\n\nif (msg.topic === \"workStation-1/mac\") {\n    mac = msg.payload;\n    flow.set(\"mac\", mac);\n\n    if (!(mac).match(macreg)) {\n        msg.errormessage = \"Device not recognized\"\n        mac = \"\"\n    }\n    else{\n        msg.errormessage = \"\"\n    }\n    msg.payload=mac\n}\n\n/*\nvar id = flow.get(\"mac\") || \"\";\n\nif (msg.topic === \"workStation-1/mac\") {\n    idtype = msg.payload;\n    flow.set(\"idtype\", idtype);\n}\n\nif (msg.topic === \"textinputId\"){\n    id = msg.payload;\n    flow.set(\"id\",id);\n}\n\n\nif (msg.topic === \"start\") {\n    msg.errormessage = \"\"\n    if ((idtype === \"PAS\")) {\n        if (!(id).match(idPASreg)) {\n            msg.errormessage = \"Enter a valid Passport\"\n        }\n    } else if ((idtype === \"CC\")) {\n        if (!(id).match(idCCreg)) {\n            msg.errormessage = \"Enter a valid CC\"\n        }\n\n    }else {\n        msg.errormessage = \"Invalid id type,cannot start\"\n        id = \"\"\n        idtype = \"\"\n    }\n    msg.payload = idtype+\"-\"+id;\n} else {\n    context.set(\"id\", \"\");\n    context.set(\"idtype\", \"\");\n}*/\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 1680,
+        "wires": [
+            [
+                "170598ecae694d50"
+            ]
+        ]
+    },
+    {
+        "id": "a7f654119261030b",
+        "type": "debug",
+        "z": "33ad57034ed91e37",
+        "name": "debug 20",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 940,
+        "y": 1640,
+        "wires": []
+    },
+    {
+        "id": "8cc065809afdc855",
+        "type": "ui_led",
+        "z": "33ad57034ed91e37",
+        "order": 3,
+        "group": "278de71dd7cd642d",
+        "width": "1",
+        "height": "1",
+        "label": "",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "1",
+                "valueType": "num"
+            },
+            {
+                "color": "#ffa500",
+                "value": "2",
+                "valueType": "num"
+            },
+            {
+                "color": "#008000",
+                "value": "3",
+                "valueType": "num"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "Sensor State",
+        "x": 790,
+        "y": 1740,
+        "wires": []
+    },
+    {
+        "id": "47b1fb481cbe1cbe",
+        "type": "mqtt in",
+        "z": "33ad57034ed91e37",
+        "name": "",
+        "topic": "workStation-1/state",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "3c78f8f90be30302",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 130,
+        "y": 1780,
+        "wires": [
+            [
+                "39733e968e75b9df"
+            ]
+        ]
+    },
+    {
+        "id": "39733e968e75b9df",
+        "type": "function",
+        "z": "33ad57034ed91e37",
+        "name": "data_validation_state",
+        "func": "var statereg = \"^[0-3]{1}$\"\n\nvar state = flow.get(\"state\") || \"\";\n\nif (msg.topic === \"workStation-1/state\") {\n    state = (msg.payload).toString();\n    flow.set(\"state\", state);\n\n    if (!(state).match(statereg)) {\n        msg.errormessage = \"Wrong State\"\n        state = \"1\"\n    }\n    else{\n        msg.errormessage = \"\"\n    }\n    msg.payload=state\n}\n\n/*\nvar id = flow.get(\"mac\") || \"\";\n\nif (msg.topic === \"workStation-1/mac\") {\n    idtype = msg.payload;\n    flow.set(\"idtype\", idtype);\n}\n\nif (msg.topic === \"textinputId\"){\n    id = msg.payload;\n    flow.set(\"id\",id);\n}\n\n\nif (msg.topic === \"start\") {\n    msg.errormessage = \"\"\n    if ((idtype === \"PAS\")) {\n        if (!(id).match(idPASreg)) {\n            msg.errormessage = \"Enter a valid Passport\"\n        }\n    } else if ((idtype === \"CC\")) {\n        if (!(id).match(idCCreg)) {\n            msg.errormessage = \"Enter a valid CC\"\n        }\n\n    }else {\n        msg.errormessage = \"Invalid id type,cannot start\"\n        id = \"\"\n        idtype = \"\"\n    }\n    msg.payload = idtype+\"-\"+id;\n} else {\n    context.set(\"id\", \"\");\n    context.set(\"idtype\", \"\");\n}*/\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 1780,
+        "wires": [
+            [
+                "13b03c2f528bfab8"
+            ]
+        ]
+    },
+    {
+        "id": "c9958ae30548786d",
+        "type": "debug",
+        "z": "33ad57034ed91e37",
+        "name": "debug 21",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 940,
+        "y": 1740,
+        "wires": []
+    },
+    {
+        "id": "f8eb8ee5749b69ea",
+        "type": "mqtt in",
+        "z": "33ad57034ed91e37",
+        "name": "",
+        "topic": "workStation-1/bpm",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "3c78f8f90be30302",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 130,
+        "y": 1920,
+        "wires": [
+            [
+                "604f9da3ad849a79"
+            ]
+        ]
+    },
+    {
+        "id": "8a7912f7ebcdc1ea",
+        "type": "debug",
+        "z": "33ad57034ed91e37",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 790,
+        "y": 1860,
+        "wires": []
+    },
+    {
+        "id": "76580db0a2f34870",
+        "type": "ui_chart",
+        "z": "33ad57034ed91e37",
+        "name": "",
+        "group": "450435b1cdeebf25",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "label": "",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "bezier",
+        "nodata": "Sin datos",
+        "dot": true,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "2",
+        "removeOlderPoints": "1000",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#ac1525",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#2890d3",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 790,
+        "y": 1900,
+        "wires": [
+            [
+                "6f38e1c28ad78611"
+            ]
+        ]
+    },
+    {
+        "id": "6f38e1c28ad78611",
+        "type": "debug",
+        "z": "33ad57034ed91e37",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 950,
+        "y": 1900,
+        "wires": []
+    },
+    {
+        "id": "604f9da3ad849a79",
+        "type": "function",
+        "z": "33ad57034ed91e37",
+        "name": "data_validation_BPM",
+        "func": "var bpmreg = \"^[0-9]{1,3}[.,][0-9]{1,2}$\"\n\nvar bpm = flow.get(\"bpm\") || \"\";\n\n\n\nif (msg.topic === \"workStation-1/bpm\") {\n    bpm = msg.payload\n    if (typeof (bpm) === \"string\") {\n        msg.types = \"Es un string\"\n    }\n    else if (typeof (bpm) === \"number\"){\n        bpm = ((Math.round((msg.payload) * 100) / 100).toFixed(2)).toString();\n        msg.types = \"Es un int\"\n    }\n    else{\n        msg.types = \"Sabra diosito que es\"\n        bpm = (msg.payload).toString();\n\n    }\n    flow.set(\"bpm\", bpm);\n\n    if (!(bpm).match(bpmreg)) {\n        msg.errormessage = \"Wrong BPM\"\n        bpm = \"\"\n    }\n    else{\n        msg.errormessage = \"\"\n        bpm = bpm.replace(\",\",\".\")\n        bpm = ((Math.round((bpm) * 100) / 100).toFixed(2)).toString();\n\n    }\n    msg.payload = bpm\n    flow.set(\"bpm\",bpm)   \n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 1920,
+        "wires": [
+            [
+                "9ee6c96b0a37cd8f"
+            ]
+        ],
+        "info": "Debe recibir valores dd.dd el resto los pasa como error"
+    },
+    {
+        "id": "0d0728bc3f43d9b1",
+        "type": "mqtt in",
+        "z": "33ad57034ed91e37",
+        "name": "",
+        "topic": "workStation-1/spo2",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "3c78f8f90be30302",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 130,
+        "y": 2040,
+        "wires": [
+            [
+                "422bc5da641bb986"
+            ]
+        ]
+    },
+    {
+        "id": "a9207724566fb307",
+        "type": "debug",
+        "z": "33ad57034ed91e37",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 850,
+        "y": 2120,
+        "wires": []
+    },
+    {
+        "id": "9462a4e0ed3fb946",
+        "type": "change",
+        "z": "33ad57034ed91e37",
+        "name": "Gauge Colors",
+        "rules": [
+            {
+                "t": "set",
+                "p": "circleColor",
+                "pt": "msg",
+                "to": "#87000D",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "textColor",
+                "pt": "msg",
+                "to": "#000000",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "waveTextColor",
+                "pt": "msg",
+                "to": "#FFFFFF",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "waveColor",
+                "pt": "msg",
+                "to": "#AD1625",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1060,
+        "y": 2060,
+        "wires": [
+            [
+                "1d7827c469669814"
+            ]
+        ]
+    },
+    {
+        "id": "1d7827c469669814",
+        "type": "function",
+        "z": "33ad57034ed91e37",
+        "name": "Style Gauge",
+        "func": "msg.ui_control = \n\n{\n    \"gtype\": \"wave\",\n\n    \"options\":{\n        \"circleColor\": msg.circleColor, \n        \"textColor\": msg.textColor, \n        \"waveTextColor\": msg.waveTextColor, \n        \"waveColor\": msg.waveColor, \n        \"circleThickness\":0.06, \n        \"textVertPosition\":0.4, \n        \"waveHeight\":0.08, \n        \"waveCount\":3\n    \n}\n}\n\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1310,
+        "y": 2060,
+        "wires": [
+            [
+                "1b1e3113a72e1076"
+            ]
+        ]
+    },
+    {
+        "id": "422bc5da641bb986",
+        "type": "function",
+        "z": "33ad57034ed91e37",
+        "name": "data_validation_spo2",
+        "func": "var spo2reg = \"^[0-9]{1,2}$\"\n\nvar spo2 = flow.get(\"spo2\") || \"\";\n\n\n\nif (msg.topic === \"workStation-1/spo2\") {\n    spo2 = msg.payload\n    if (typeof (spo2) === \"string\") {\n        msg.types = \"Es un string\"\n    }\n    else if (typeof (spo2) === \"number\"){\n        spo2 = ((Math.round((msg.payload)))).toString();\n        msg.types = \"Es un int\"\n    }\n    else{\n        msg.types = \"Sabra diosito que es\"\n        spo2 = (msg.payload).toString();\n\n    }\n    flow.set(\"spo2\", spo2);\n\n    if (!(spo2).match(spo2reg)) {\n        msg.errormessage = \"Wrong SpO2 percentage\"\n        spo2 = \"\"\n    }\n    else{\n        msg.errormessage = \"\"\n    }\n    msg.payload = spo2\n    flow.set(\"spo2\", spo2)   \n}\n\n/*\n\n}*/\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 2040,
+        "wires": [
+            [
+                "7106e9189f05306a"
+            ]
+        ],
+        "info": "Recibe enteros!"
+    },
+    {
+        "id": "6ea2ceb56cc721b5",
+        "type": "ui_toast",
+        "z": "33ad57034ed91e37",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "Enterado",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "alerta",
+        "name": "ui-notifcacion",
+        "x": 1650,
+        "y": 2200,
+        "wires": [
+            [
+                "deda575adb4ede02"
+            ]
+        ]
+    },
+    {
+        "id": "fae257101cf25d8e",
+        "type": "debug",
+        "z": "33ad57034ed91e37",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1650,
+        "y": 2280,
+        "wires": []
+    },
+    {
+        "id": "a6801b861447f8cb",
+        "type": "switch",
+        "z": "33ad57034ed91e37",
+        "name": "alertas SPO2",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gte",
+                "v": "93",
+                "vt": "num"
+            },
+            {
+                "t": "btwn",
+                "v": "90",
+                "vt": "num",
+                "v2": "92",
+                "v2t": "num"
+            },
+            {
+                "t": "lt",
+                "v": "90",
+                "vt": "num"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 3,
+        "x": 870,
+        "y": 2200,
+        "wires": [
+            [
+                "355a1bdde571c399"
+            ],
+            [
+                "1dcbed7c4d267158"
+            ],
+            [
+                "fdd81ef2158f6a34"
+            ]
+        ]
+    },
+    {
+        "id": "1dcbed7c4d267158",
+        "type": "change",
+        "z": "33ad57034ed91e37",
+        "name": "ESTACION 1- Hipoxemia Moderada ",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "ESTACION 1- Hipoxemia Moderada ",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "alerta",
+                "pt": "msg",
+                "to": "ESTACION 1- Hipoxemia Moderada ",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1130,
+        "y": 2200,
+        "wires": [
+            [
+                "22cf9558469f02ab"
+            ]
+        ]
+    },
+    {
+        "id": "fdd81ef2158f6a34",
+        "type": "change",
+        "z": "33ad57034ed91e37",
+        "name": "ESTACION 1- Hipoxemia Severa ",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "ESTACION 1- HIPOXEMIA SEVERA !! ",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "alerta",
+                "pt": "msg",
+                "to": "ESTACION 1- HIPOXEMIA SEVERA !! ",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1120,
+        "y": 2260,
+        "wires": [
+            [
+                "a0272d4ceea3734b",
+                "22cf9558469f02ab"
+            ]
+        ]
+    },
+    {
+        "id": "a0272d4ceea3734b",
+        "type": "change",
+        "z": "33ad57034ed91e37",
+        "name": "activar Actuador",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "1",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1440,
+        "y": 2280,
+        "wires": [
+            [
+                "fae257101cf25d8e"
+            ]
+        ]
+    },
+    {
+        "id": "355a1bdde571c399",
+        "type": "change",
+        "z": "33ad57034ed91e37",
+        "name": "desactivar actuador",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "0",
+                "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "alerta",
+                "pt": "msg",
+                "to": "ESTACION 1- Oxigeno normal",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1070,
+        "y": 2120,
+        "wires": [
+            [
+                "ab04afe85dc6d23c",
+                "22cf9558469f02ab"
+            ]
+        ]
+    },
+    {
+        "id": "ab04afe85dc6d23c",
+        "type": "debug",
+        "z": "33ad57034ed91e37",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1410,
+        "y": 2120,
+        "wires": []
+    },
+    {
+        "id": "6e244825183f35d8",
+        "type": "mqtt in",
+        "z": "33ad57034ed91e37",
+        "name": "",
+        "topic": "workStation-1/startConfirmation",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "3c78f8f90be30302",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 170,
+        "y": 1520,
+        "wires": [
+            [
+                "d6b7f3fdd412485c"
+            ]
+        ]
+    },
+    {
+        "id": "d6b7f3fdd412485c",
+        "type": "switch",
+        "z": "33ad57034ed91e37",
+        "name": "start_data_validation",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "start",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "stop",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 3,
+        "x": 420,
+        "y": 1520,
+        "wires": [
+            [
+                "f4b25ccb39769dea"
+            ],
+            [
+                "6f0556bd282eff5e"
+            ],
+            [
+                "8ef9eaf07af9ee06"
+            ]
+        ]
+    },
+    {
+        "id": "f4b25ccb39769dea",
+        "type": "change",
+        "z": "33ad57034ed91e37",
+        "name": "msg: inicio estacion 1",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Estacion 1, ha Iniciado.",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 660,
+        "y": 1460,
+        "wires": [
+            [
+                "37d31c018c41a54f"
+            ]
+        ]
+    },
+    {
+        "id": "6f0556bd282eff5e",
+        "type": "change",
+        "z": "33ad57034ed91e37",
+        "name": "msg: de parada estacion 1",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Estacion 1, ha parado.",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 680,
+        "y": 1520,
+        "wires": [
+            [
+                "37d31c018c41a54f"
+            ]
+        ]
+    },
+    {
+        "id": "37d31c018c41a54f",
+        "type": "ui_toast",
+        "z": "33ad57034ed91e37",
+        "position": "top right",
+        "displayTime": "3",
+        "highlight": "yellow",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 950,
+        "y": 1520,
+        "wires": []
+    },
+    {
+        "id": "8ef9eaf07af9ee06",
+        "type": "change",
+        "z": "33ad57034ed91e37",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Invalid start data",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "errormessage",
+                "pt": "msg",
+                "to": "Invalid start data",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 640,
+        "y": 1580,
+        "wires": [
+            [
+                "37d31c018c41a54f",
+                "ace10fd2fb452429"
+            ]
+        ]
+    },
+    {
+        "id": "df958abe2e65b221",
+        "type": "mqtt in",
+        "z": "33ad57034ed91e37",
+        "name": "",
+        "topic": "workStation-bmp180/pressure",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "3c78f8f90be30302",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 180,
+        "y": 2400,
+        "wires": [
+            [
+                "5d3f3c7236f74ad0"
+            ]
+        ]
+    },
+    {
+        "id": "6050befdae8a7ec2",
+        "type": "debug",
+        "z": "33ad57034ed91e37",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 650,
+        "y": 2460,
+        "wires": []
+    },
+    {
+        "id": "a71c8283e06220a8",
+        "type": "ui_gauge",
+        "z": "33ad57034ed91e37",
+        "name": "",
+        "group": "bb93eccb9bfa7e8a",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "hPa",
+        "label": "hPa",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "1000",
+        "colors": [
+            "#00b3d9",
+            "#0073e6",
+            "#001bd7"
+        ],
+        "seg1": "33",
+        "seg2": "66",
+        "diff": false,
+        "className": "",
+        "x": 650,
+        "y": 2400,
+        "wires": []
+    },
+    {
+        "id": "f9ec3fe1f979228d",
+        "type": "ui_widget_thermometer",
+        "z": "33ad57034ed91e37",
+        "group": "db96499ed2307ad9",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "title": "Temperature",
+        "numColor": "",
+        "colorTop": "#ff2600",
+        "colorMiddle": "#ff9200",
+        "colorBottom": "#0432ff",
+        "unit": "°C",
+        "scale": "small",
+        "minTemp": 0,
+        "maxTemp": 100,
+        "minTempMoreThanMaxTemp": "1",
+        "numberOfDecimals": "0",
+        "showPercentage": "0",
+        "x": 670,
+        "y": 2580,
+        "wires": []
+    },
+    {
+        "id": "2aa222de91529f61",
+        "type": "mqtt in",
+        "z": "33ad57034ed91e37",
+        "name": "",
+        "topic": "workStation-bmp180/temperature",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "3c78f8f90be30302",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 190,
+        "y": 2560,
+        "wires": [
+            [
+                "271b6292a83855c9",
+                "f9ec3fe1f979228d"
+            ]
+        ]
+    },
+    {
+        "id": "271b6292a83855c9",
+        "type": "debug",
+        "z": "33ad57034ed91e37",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 670,
+        "y": 2540,
+        "wires": []
+    },
+    {
+        "id": "f1fb0ade8d43f794",
+        "type": "mqtt in",
+        "z": "33ad57034ed91e37",
+        "name": "",
+        "topic": "workStation-bmp180/altitude",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "3c78f8f90be30302",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 180,
+        "y": 2660,
+        "wires": [
+            [
+                "0ead6e1e9628a18b",
+                "0502a235a4d8f6ea"
+            ]
+        ]
+    },
+    {
+        "id": "0ead6e1e9628a18b",
+        "type": "debug",
+        "z": "33ad57034ed91e37",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 670,
+        "y": 2640,
+        "wires": []
+    },
+    {
+        "id": "0502a235a4d8f6ea",
+        "type": "ui_text",
+        "z": "33ad57034ed91e37",
+        "group": "bb93eccb9bfa7e8a",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Altitud (ft):",
+        "format": "{{msg.payload}}",
+        "layout": "row-center",
+        "className": "",
+        "x": 670,
+        "y": 2680,
+        "wires": []
+    },
+    {
+        "id": "75aa352a8e28b83f",
+        "type": "comment",
+        "z": "33ad57034ed91e37",
+        "name": "Sensor solito contemperatura, altura y humedad",
+        "info": "",
+        "x": 200,
+        "y": 2340,
+        "wires": []
+    },
+    {
+        "id": "5d3f3c7236f74ad0",
+        "type": "function",
+        "z": "33ad57034ed91e37",
+        "name": "data_validation_BMP",
+        "func": "var pressurereg = \"^[0-9]{1,4}[.,][0-9]{1,4}$\"\n\nvar pressure = flow.get(\"pressure\") || \"\";\n\n\n\nif (msg.topic === \"workStation-bmp180/pressure\") {\n    pressure = msg.payload\n    if (typeof (pressure) === \"string\") {\n        msg.types = \"Es un string\"\n    }\n    else if (typeof (pressure) === \"number\"){\n        pressure = ((Math.round(Number(msg.payload) * 10000) / 10000).toFixed(4)).toString();\n        msg.types = \"Es un int\"\n    }\n    else{\n        msg.types = \"Sabra diosito que es\"\n        pressure = (msg.payload).toString();\n\n    }\n    flow.set(\"pressure\", pressure);\n\n    if (!(pressure).match(pressurereg)) {\n        msg.errormessage = \"Wrong pressure provided\"\n        pressure = \"\"\n    }\n    else{\n        msg.errormessage = \"\"\n        pressure = pressure.replace(\",\",\".\")\n        pressure = ((Math.round(Number(pressure) * 10000) / 10000).toFixed(4)).toString();\n\n    }\n    msg.payload = pressure\n    flow.set(\"pressure\", pressure)   \n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 2400,
+        "wires": [
+            [
+                "a71c8283e06220a8",
+                "6050befdae8a7ec2"
+            ]
+        ],
+        "info": "Debe recibir valores dd.dd el resto los pasa como error"
+    },
+    {
+        "id": "1b1e3113a72e1076",
+        "type": "ui_gauge",
+        "z": "33ad57034ed91e37",
+        "name": "",
+        "group": "795027850de7f62b",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "SpO2",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b3d9",
+            "#0073e6",
+            "#001bd7"
+        ],
+        "seg1": "33",
+        "seg2": "66",
+        "diff": false,
+        "className": "",
+        "x": 1510,
+        "y": 2020,
+        "wires": []
+    },
+    {
+        "id": "e4b61ee7c310884b",
+        "type": "inject",
+        "z": "33ad57034ed91e37",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "\"\"",
+        "payloadType": "str",
+        "x": 850,
+        "y": 2060,
+        "wires": [
+            [
+                "9462a4e0ed3fb946"
+            ]
+        ]
+    },
+    {
+        "id": "deda575adb4ede02",
+        "type": "debug",
+        "z": "33ad57034ed91e37",
+        "name": "Prueba salida mens",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1860,
+        "y": 2200,
+        "wires": []
+    },
+    {
+        "id": "22cf9558469f02ab",
+        "type": "rbe",
+        "z": "33ad57034ed91e37",
+        "name": "",
+        "func": "rbe",
+        "gap": "",
+        "start": "",
+        "inout": "out",
+        "septopics": true,
+        "property": "alerta",
+        "topi": "topic",
+        "x": 1390,
+        "y": 2200,
+        "wires": [
+            [
+                "6af6b0b2942fbd90"
+            ]
+        ]
+    },
+    {
+        "id": "6af6b0b2942fbd90",
+        "type": "switch",
+        "z": "33ad57034ed91e37",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "neq",
+                "v": "0",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1510,
+        "y": 2200,
+        "wires": [
+            [
+                "6ea2ceb56cc721b5"
+            ]
+        ]
+    },
+    {
+        "id": "7106e9189f05306a",
+        "type": "switch",
+        "z": "33ad57034ed91e37",
+        "name": "SpO2_data_check",
+        "property": "errormessage",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Wrong SpO2 percentage",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 610,
+        "y": 2040,
+        "wires": [
+            [
+                "1b1e3113a72e1076",
+                "a9207724566fb307",
+                "a6801b861447f8cb"
+            ],
+            [
+                "014fe8812cbe9fc8",
+                "ace10fd2fb452429"
+            ]
+        ]
+    },
+    {
+        "id": "014fe8812cbe9fc8",
+        "type": "ui_toast",
+        "z": "33ad57034ed91e37",
+        "position": "top right",
+        "displayTime": "5",
+        "highlight": "red",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "SpO2 Error Message",
+        "name": "SpO2 Error Message",
+        "x": 900,
+        "y": 2320,
+        "wires": []
+    },
+    {
+        "id": "9ee6c96b0a37cd8f",
+        "type": "switch",
+        "z": "33ad57034ed91e37",
+        "name": "Bpm_data_check",
+        "property": "errormessage",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Wrong BPM",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 610,
+        "y": 1920,
+        "wires": [
+            [
+                "76580db0a2f34870",
+                "8a7912f7ebcdc1ea"
+            ],
+            [
+                "694730881691b3a1",
+                "ace10fd2fb452429"
+            ]
+        ]
+    },
+    {
+        "id": "694730881691b3a1",
+        "type": "ui_toast",
+        "z": "33ad57034ed91e37",
+        "position": "top right",
+        "displayTime": "5",
+        "highlight": "red",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "Bpm Error Message",
+        "name": "Bpm Error Message",
+        "x": 840,
+        "y": 1960,
+        "wires": []
+    },
+    {
+        "id": "13b03c2f528bfab8",
+        "type": "switch",
+        "z": "33ad57034ed91e37",
+        "name": "state_data_check",
+        "property": "errormessage",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Wrong State",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 590,
+        "y": 1780,
+        "wires": [
+            [
+                "8cc065809afdc855",
+                "c9958ae30548786d"
+            ],
+            [
+                "f0b83b6001e1d0f7",
+                "ace10fd2fb452429"
+            ]
+        ]
+    },
+    {
+        "id": "170598ecae694d50",
+        "type": "switch",
+        "z": "33ad57034ed91e37",
+        "name": "MAC_data_check",
+        "property": "errormessage",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Device not recognized",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 590,
+        "y": 1680,
+        "wires": [
+            [
+                "b7cd2ba41e707ac9",
+                "a7f654119261030b"
+            ],
+            [
+                "ed840644619e31cd",
+                "ace10fd2fb452429"
+            ]
+        ]
+    },
+    {
+        "id": "f0b83b6001e1d0f7",
+        "type": "ui_toast",
+        "z": "33ad57034ed91e37",
+        "position": "top right",
+        "displayTime": "5",
+        "highlight": "red",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "state Error Message",
+        "name": "state Error Message",
+        "x": 820,
+        "y": 1800,
+        "wires": []
+    },
+    {
+        "id": "ed840644619e31cd",
+        "type": "ui_toast",
+        "z": "33ad57034ed91e37",
+        "position": "top right",
+        "displayTime": "5",
+        "highlight": "red",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "MAC Error Message",
+        "name": "MAC Error Message",
+        "x": 820,
+        "y": 1700,
+        "wires": []
+    },
+    {
+        "id": "f5239fb8705f28d4",
+        "type": "ui_form",
+        "z": "33ad57034ed91e37",
+        "name": "Estación Nº 1 Sign-In",
+        "label": "",
+        "group": "18c944f9c7e3dea6",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "options": [
+            {
+                "label": "username",
+                "value": "username",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "password",
+                "value": "password",
+                "type": "password",
+                "required": true,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "username": "",
+            "password": ""
+        },
+        "payload": "",
+        "submit": "submit",
+        "cancel": "cancel",
+        "topic": "",
+        "topicType": "str",
+        "splitLayout": false,
+        "className": "",
+        "x": 140,
+        "y": 160,
+        "wires": [
+            [
+                "afb5d5821507428f",
+                "a670c6f28ad5752c",
+                "1405e9b8de26f331"
+            ]
+        ]
+    },
+    {
+        "id": "34fd2a83561334c9",
+        "type": "debug",
+        "z": "33ad57034ed91e37",
+        "name": "Debug Account Log ",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 650,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "16ee70c0c510cba9",
+        "type": "comment",
+        "z": "33ad57034ed91e37",
+        "name": "Sign-In Section",
+        "info": "",
+        "x": 120,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "afb5d5821507428f",
+        "type": "function",
+        "z": "33ad57034ed91e37",
+        "name": "Account Log",
+        "func": "var accountlog =  flow.get(\"accountlog\") || [] ; \n\naccountlog.push({ accessAt : new Date(), username : msg.payload.username})\n\nflow.set(\"accountlog\", accountlog);\n\nmsg.payload = accountlog;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 100,
+        "wires": [
+            [
+                "34fd2a83561334c9"
+            ]
+        ]
+    },
+    {
+        "id": "a670c6f28ad5752c",
+        "type": "function",
+        "z": "33ad57034ed91e37",
+        "name": "Account Verification",
+        "func": "var accounts =  flow.get(\"accounts\") || [ { username : \"admin\", password : \"admin\"},{ username : \"guest\", password : \"guest\"}] ; \n\nvar username = msg.payload.username ;\nvar password = msg.payload.password ; \n\nmsg.payload = 1;\nflow.set(\"username\",username)\naccounts.forEach(function ( account ){\n    if ( account.username == username ) {\n       msg.payload = 2;\n       \n       if ( account.password == password ) {\n           msg.payload = 0;\n       } \n    }\n});\n\nif ( msg.payload == 0 ) {\n  var currentsocketid = flow.get(\"clientid\") || undefined;\n  if ( currentsocketid !== undefined && currentsocketid !== msg.socketid ) msg.payload = 3;\n}\n// keep the original socketid from msg.socketid;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 160,
+        "wires": [
+            [
+                "ea2c6f5f6d69f939"
+            ]
+        ]
+    },
+    {
+        "id": "ea2c6f5f6d69f939",
+        "type": "switch",
+        "z": "33ad57034ed91e37",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "2",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "3",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 4,
+        "x": 530,
+        "y": 160,
+        "wires": [
+            [
+                "4955f13261bd7f7f"
+            ],
+            [
+                "51ee339c58b9649b"
+            ],
+            [
+                "95b47e190d7546bd"
+            ],
+            [
+                "a67d6c9b5cee900f"
+            ]
+        ]
+    },
+    {
+        "id": "4955f13261bd7f7f",
+        "type": "function",
+        "z": "33ad57034ed91e37",
+        "name": "= 0 : Success",
+        "func": "/* activate session timer */\nvar sessionTimer =  flow.get(\"sessionTimer\") || 0; \nvar currTime = Date.now();\nflow.set(\"sessionTimer\", currTime);\nflow.set(\"clientid\", msg.socketid);\n/* ui-control payload */\nmsg.payload = { group: {\n    show: [\"Estacion1_RitmoCardiaco\",\"Estacion1_Saturacion\",\"Estacion1_PresionAtmosferica\",\"Estacion1_Temperatura\",\"Estacion1_DATOSINICIALES\"],\n    hide: [\"Estacion1_Signin\"]\n    }\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 140,
+        "wires": [
+            [
+                "82d8e9263b98fd84",
+                "35c9f935f9ca4a08"
+            ]
+        ]
+    },
+    {
+        "id": "51ee339c58b9649b",
+        "type": "function",
+        "z": "33ad57034ed91e37",
+        "name": "= 1 : Unknown User",
+        "func": "msg.payload = \"Wrong credentials\"\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 750,
+        "y": 180,
+        "wires": [
+            [
+                "c403107eef1895ab",
+                "2ba7f6cd818a923e",
+                "2712ad56dfac0a51"
+            ]
+        ]
+    },
+    {
+        "id": "95b47e190d7546bd",
+        "type": "function",
+        "z": "33ad57034ed91e37",
+        "name": "= 2 : Wrong Password",
+        "func": "msg.payload = \"Wrong credentials\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 220,
+        "wires": [
+            [
+                "c403107eef1895ab",
+                "2ba7f6cd818a923e",
+                "2712ad56dfac0a51"
+            ]
+        ]
+    },
+    {
+        "id": "82d8e9263b98fd84",
+        "type": "ui_ui_control",
+        "z": "33ad57034ed91e37",
+        "name": "Go to Sensor/History Group",
+        "x": 1020,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c403107eef1895ab",
+        "type": "ui_toast",
+        "z": "33ad57034ed91e37",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "Authentication Failed",
+        "name": "Authentication Failure Dialog",
+        "x": 1040,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1405e9b8de26f331",
+        "type": "debug",
+        "z": "33ad57034ed91e37",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 350,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "1678a7f6ada7e20e",
+        "type": "ui_toast",
+        "z": "33ad57034ed91e37",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "System In Use.",
+        "name": "System In-Use Dialog",
+        "x": 1020,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a67d6c9b5cee900f",
+        "type": "function",
+        "z": "33ad57034ed91e37",
+        "name": "= 4 : System In Use",
+        "func": "msg.payload = \"System is used by other user.\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 750,
+        "y": 260,
+        "wires": [
+            [
+                "1678a7f6ada7e20e",
+                "2712ad56dfac0a51"
+            ]
+        ]
+    },
+    {
+        "id": "65e7bbf39dab0f1b",
+        "type": "comment",
+        "z": "33ad57034ed91e37",
+        "name": "Session Management - 15 secs for this demo",
+        "info": "",
+        "x": 230,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "500f5dbcf684fc1e",
+        "type": "inject",
+        "z": "33ad57034ed91e37",
+        "name": "Timer",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "3",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 540,
+        "wires": [
+            [
+                "9af53d5cf3622f7f",
+                "639ef4fcc213f814"
+            ]
+        ]
+    },
+    {
+        "id": "9af53d5cf3622f7f",
+        "type": "function",
+        "z": "33ad57034ed91e37",
+        "name": "Detect Session Timer",
+        "func": "var sessionTimer =  flow.get(\"sessionTimer\") || 0; \nvar currTime = Date.now();\nvar SESSION_TIMEOUT = 150000; //15 secs\n\nif ( sessionTimer === 0 /* Inactive, No user signed in */ ) {\n    msg.payload = 2;\n} else {\n    if ( currTime - sessionTimer > SESSION_TIMEOUT ) {\n      msg.payload = 0;  \n    } else {\n      msg.payload = 1;        \n    }\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 500,
+        "wires": [
+            [
+                "9dd450dbda8d6e5f"
+            ]
+        ]
+    },
+    {
+        "id": "9dd450dbda8d6e5f",
+        "type": "switch",
+        "z": "33ad57034ed91e37",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "2",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 530,
+        "y": 500,
+        "wires": [
+            [
+                "5997cbee5232aefd"
+            ],
+            [
+                "5f20a3afd311aa54"
+            ],
+            [
+                "784594c399bebacd"
+            ]
+        ]
+    },
+    {
+        "id": "5997cbee5232aefd",
+        "type": "function",
+        "z": "33ad57034ed91e37",
+        "name": "Time-Out",
+        "func": "/* activate session timer */\nvar sessionTimer =  flow.get(\"sessionTimer\") || 0; \nflow.set(\"sessionTimer\", 0);\n\nmsg.socketid = flow.get(\"clientid\") || undefined;\nmsg.payload = \"Session Expired! Please singin again!\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 703.4999618530273,
+        "y": 445,
+        "wires": [
+            [
+                "0f4e8a0639b17d16",
+                "50a6527b83ac4b9f",
+                "2712ad56dfac0a51"
+            ]
+        ]
+    },
+    {
+        "id": "0f4e8a0639b17d16",
+        "type": "ui_toast",
+        "z": "33ad57034ed91e37",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "Session Timeout",
+        "name": "Time-Out Dialog",
+        "x": 976.5000381469727,
+        "y": 375,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c6cc8679d49691f9",
+        "type": "ui_ui_control",
+        "z": "33ad57034ed91e37",
+        "name": "Go to Signin Group",
+        "x": 1210,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "50a6527b83ac4b9f",
+        "type": "function",
+        "z": "33ad57034ed91e37",
+        "name": "Sign-In Redirection",
+        "func": "var msg = {};\nflow.set(\"username\", \"\")\nmsg.socketid = flow.get(\"clientid\") || undefined;\nmsg.payload = { group: {\n    hide: [\"Estacion1_RitmoCardiaco\",\"Estacion1_Saturacion\",\"Estacion1_PresionAtmosferica\",\"Estacion1_Temperatura\",\"Estacion1_DATOSINICIALES\"],\n    show : [\"Estacion1_Signin\"]\n}\n};\n\nflow.set(\"clientid\", undefined);\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 990,
+        "y": 440,
+        "wires": [
+            [
+                "c6cc8679d49691f9"
+            ]
+        ]
+    },
+    {
+        "id": "6e8aa70b0f9d140c",
+        "type": "ui_toast",
+        "z": "33ad57034ed91e37",
+        "position": "bottom right",
+        "displayTime": "1",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "Timer",
+        "name": "Display Remaining Time",
+        "x": 1230,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "639ef4fcc213f814",
+        "type": "function",
+        "z": "33ad57034ed91e37",
+        "name": "Calculating Remaining Time (Debug)",
+        "func": "var sessionTimer =  flow.get(\"sessionTimer\") || 0; \nvar currTime = Date.now();\nvar remainingSecs = Math.floor((150000 - (currTime - sessionTimer))/1000) + 1;\n    \nif ( sessionTimer == 0 /* Inactive, No user signed in */ ) {\n    return null;\n} else {\n    \n    if ( remainingSecs <= 7 ) msg.payload = \"Remaining : \" + remainingSecs + \" secs\";  \n    else return null;\n}\n\nmsg.socketid = flow.get(\"clientid\") || \"B1234\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 600,
+        "wires": [
+            [
+                "6e8aa70b0f9d140c"
+            ]
+        ]
+    },
+    {
+        "id": "f7179a8944445b4a",
+        "type": "ui_ui_control",
+        "z": "33ad57034ed91e37",
+        "name": "Stay in Sensor Group",
+        "x": 1220,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5f20a3afd311aa54",
+        "type": "function",
+        "z": "33ad57034ed91e37",
+        "name": "Sensor/History Goup",
+        "func": "var msg = {};\nmsg.socketid = flow.get(\"clientid\") || undefined;\nmsg.payload = { group: {\n    show: [\"Estacion1_RitmoCardiaco\",\"Estacion1_Saturacion\",\"Estacion1_PresionAtmosferica\",\"Estacion1_Temperatura\",\"Estacion1_DATOSINICIALES\"],\n    hide : [\"Estacion1_Signin\"]\n}\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 500,
+        "wires": [
+            [
+                "f7179a8944445b4a"
+            ]
+        ]
+    },
+    {
+        "id": "784594c399bebacd",
+        "type": "function",
+        "z": "33ad57034ed91e37",
+        "name": "Signin Goup",
+        "func": "var msg = {};\nmsg.payload = { group: {\n    hide: [\"Estacion1_RitmoCardiaco\",\"Estacion1_Saturacion\",\"Estacion1_PresionAtmosferica\",\"Estacion1_Temperatura\",\"Estacion1_DATOSINICIALES\"],\n    show : [\"Estacion1_Signin\"]\n}\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 710,
+        "y": 560,
+        "wires": [
+            [
+                "398cb06cab28faa0"
+            ]
+        ]
+    },
+    {
+        "id": "398cb06cab28faa0",
+        "type": "ui_ui_control",
+        "z": "33ad57034ed91e37",
+        "name": "Go to Signin Group",
+        "x": 1210,
+        "y": 560,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "81414931e2b0f46b",
+        "type": "ui_ui_control",
+        "z": "33ad57034ed91e37",
+        "name": "Go to Sensor/History Group",
+        "x": 1340,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2ba7f6cd818a923e",
+        "type": "change",
+        "z": "33ad57034ed91e37",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{ group: {     hide: [\"Estacion1_Saturacion\"],     show : [\"Estacion1_Signin\"] } }",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1000,
+        "y": 180,
+        "wires": [
+            [
+                "81414931e2b0f46b"
+            ]
+        ]
+    },
+    {
+        "id": "ac30d512b8e3ffb9",
+        "type": "file",
+        "z": "33ad57034ed91e37",
+        "name": "Estacion-1.csv",
+        "filename": "/home/jargons/janrgons/Estacion-1.csv",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "utf8",
+        "x": 400,
+        "y": 1380,
+        "wires": [
+            [
+                "387397dfe1131573"
+            ]
+        ]
+    },
+    {
+        "id": "548983206ba9e506",
+        "type": "comment",
+        "z": "33ad57034ed91e37",
+        "name": "Creat CSV",
+        "info": "",
+        "x": 80,
+        "y": 1340,
+        "wires": []
+    },
+    {
+        "id": "387397dfe1131573",
+        "type": "debug",
+        "z": "33ad57034ed91e37",
+        "name": "csv-debug",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 1380,
+        "wires": []
+    },
+    {
+        "id": "7a4b68a0d97ed9a1",
+        "type": "mqtt in",
+        "z": "33ad57034ed91e37",
+        "name": "",
+        "topic": "workStation-1/data",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "e786f7271ab94ff4",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 130,
+        "y": 1380,
+        "wires": [
+            [
+                "ac30d512b8e3ffb9"
+            ]
+        ]
+    },
+    {
+        "id": "31c3ad8361460d24",
+        "type": "file",
+        "z": "33ad57034ed91e37",
+        "name": "logs.txt",
+        "filename": "/root/.node-red/logs.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "utf8",
+        "x": 1610,
+        "y": 40,
+        "wires": [
+            [
+                "7ea370fa011e3dac"
+            ]
+        ]
+    },
+    {
+        "id": "7ea370fa011e3dac",
+        "type": "debug",
+        "z": "33ad57034ed91e37",
+        "name": "csv-debug",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1800,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "60ab990e2e5b007e",
+        "type": "function",
+        "z": "33ad57034ed91e37",
+        "name": "web_and_mqtt_logs",
+        "func": "const d = new Date();\nvar logusername =  flow.get(\"username\"); \nvar logmac =  flow.get(\"mac\") || \"\" \nmsg.payload = d+ \" \"+logusername + \" \"+logmac+\" \"+msg.payload\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1420,
+        "y": 40,
+        "wires": [
+            [
+                "31c3ad8361460d24"
+            ]
+        ]
+    },
+    {
+        "id": "d7e496e549cd1cf5",
+        "type": "link in",
+        "z": "33ad57034ed91e37",
+        "name": "link in 1",
+        "links": [
+            "2712ad56dfac0a51",
+            "2b909d219b45ef90",
+            "ace10fd2fb452429"
+        ],
+        "x": 1255,
+        "y": 40,
+        "wires": [
+            [
+                "60ab990e2e5b007e"
+            ]
+        ]
+    },
+    {
+        "id": "2b909d219b45ef90",
+        "type": "link out",
+        "z": "33ad57034ed91e37",
+        "name": "logerror",
+        "mode": "link",
+        "links": [
+            "d7e496e549cd1cf5"
+        ],
+        "x": 1215,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "ace10fd2fb452429",
+        "type": "link out",
+        "z": "33ad57034ed91e37",
+        "name": "link out 1",
+        "mode": "link",
+        "links": [
+            "d7e496e549cd1cf5"
+        ],
+        "x": 875,
+        "y": 1460,
+        "wires": []
+    },
+    {
+        "id": "2712ad56dfac0a51",
+        "type": "link out",
+        "z": "33ad57034ed91e37",
+        "name": "link out 2",
+        "mode": "link",
+        "links": [
+            "d7e496e549cd1cf5"
+        ],
+        "x": 1015,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "35c9f935f9ca4a08",
+        "type": "change",
+        "z": "33ad57034ed91e37",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "login successful",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 940,
+        "y": 80,
+        "wires": [
+            [
+                "2712ad56dfac0a51"
+            ]
+        ]
+    },
+    {
+        "id": "278de71dd7cd642d",
+        "type": "ui_group",
+        "name": "DATOSINICIALES",
+        "tab": "c8befb4af76a860d",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "3c78f8f90be30302",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "localhost",
+        "port": "1883",
+        "tls": "23c5e0a087eb302d",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "450435b1cdeebf25",
+        "type": "ui_group",
+        "name": "RitmoCardiaco",
+        "tab": "c8befb4af76a860d",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "bb93eccb9bfa7e8a",
+        "type": "ui_group",
+        "name": "PresionAtmosferica",
+        "tab": "c8befb4af76a860d",
+        "order": 4,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "db96499ed2307ad9",
+        "type": "ui_group",
+        "name": "Temperatura",
+        "tab": "c8befb4af76a860d",
+        "order": 5,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "795027850de7f62b",
+        "type": "ui_group",
+        "name": "Saturacion",
+        "tab": "c8befb4af76a860d",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "18c944f9c7e3dea6",
+        "type": "ui_group",
+        "name": "Signin",
+        "tab": "c8befb4af76a860d",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "e786f7271ab94ff4",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "localhost",
+        "port": "8883",
+        "tls": "23c5e0a087eb302d",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": true,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "c8befb4af76a860d",
+        "type": "ui_tab",
+        "name": "Estacion1",
+        "icon": "mi-directions_walk",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "23c5e0a087eb302d",
+        "type": "tls-config",
+        "name": "",
+        "cert": "",
+        "key": "",
+        "ca": "",
+        "certname": "",
+        "keyname": "",
+        "caname": "ca.crt",
+        "servername": "",
+        "verifyservercert": false,
+        "alpnprotocol": ""
+    }
+]
